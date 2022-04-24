@@ -11,3 +11,60 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+
+tr:nth-child(even) {
+  background-color: #afcef9;
+}
+
+tfoot>tr {
+  text-align: center;
+  background-color: #2e54ee;
+  color: #fff
+}
+
+button {
+  color: #212529;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  outline: 0;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.remover {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545
+}
+
+.remover:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.tabela {
+  border-collapse: collapse;
+  width: 50%;
+  margin: 20px auto;
+}
+
+.tabela th,
+.tabela td {
+  padding: 10px 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+thead>tr:last-child {
+  text-align: left;
+}
+
+tbody>tr>td:last-child {
+  text-align: right;
+}
