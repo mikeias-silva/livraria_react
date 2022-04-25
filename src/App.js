@@ -6,31 +6,54 @@ import TabelaHead from './components/TabelaHead';
 
 class App extends Component {
   state = {
-    livros: [
-      {
-        id: "443-776-0909",
-        titulo: "CSS Grid Layout",
-        autor: "Maurício Samy Silva"
-      },
-      {
-        id: "321-456-7987",
-        titulo: "Node Essencial",
-        autor: "Ricardo R. Lacheta"
-      },
-      {
-        id: "098-776-132",
-        titulo: "Aprendendo Material Design",
-        autor: "Kyle Mew"
-      }
-    ]
-  }
+    livros: [],
+    coluna: []
+  };
+
+  componentDidMount() {
+    fetch("/api/livros.json")
+      .then((response) => response.json())
+      .then(livros => this.setState({ livros }))
+      .catch(function (error) {
+        alert("Erro na requisição: " + error)
+        console.log("Erro na requisição:", error);
+      })
+
+  };
+
+  handleRemoverLinha = (id) => {
+    const livros = this.state.livros.filter(livro => livro.id !== id);
+    this.setState({ livros })
+  };
+
+  handleOrdenarCrescente = (titulo) => {
+    const livros = this.state.livros.sort((a, b) => a.titulo < b.titulo ? -1 : 0);
+    this.setState({ livros })
+  };
+
+  handleOrdenarDecrescente = (titulo) => {
+    
+    const livros = this.state.livros.sort((a, b) => b.titulo < a.titulo ? -1 : 0);
+    this.setState({ livros })
+  };
+
   render() {
     return (
-      <table className='tabela'>
-        <TabelaHead />
-        <TabelaBody livros={this.state.livros}/>
-        <TabelaFoot qtdLivros={this.state.livros.length}/>
-      </table>
+      <div>
+        <table className='tabela'>
+          <TabelaHead
+            ordenarCrescente={this.handleOrdenarCrescente}
+            ordenarDecrescente={this.handleOrdenarDecrescente}
+          />
+          <TabelaBody
+            livros={this.state.livros}
+            removerLinha={this.handleRemoverLinha}
+          />
+          <TabelaFoot
+            qtdLivros={this.state.livros.length}
+          />
+        </table>
+      </div>
     );
   }
 }

@@ -7,7 +7,7 @@ const TabelaBody = (props) => (
                 <td>{livro.id}</td>
                 <td>{livro.titulo}</td>
                 <td>{livro.autor}</td>
-                <td><button className="remover">Remover</button></td>
+                <td><button className="botao remover" onClick={() => props.removerLinha(livro.id)} id={livro.id}>Remover</button></td>
             </tr>
         ))}
     </tbody>
